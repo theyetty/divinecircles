@@ -1,0 +1,46 @@
+---
+layout: page
+type: article
+---
+
+{%- include snippets/assign.html
+  target = site.data.variables.default.page.sharing
+  source0=layout.sharing source1=page.sharing -%}
+{%- assign _sharing = __return -%}
+
+<body>
+  <div id="sticky-banner">WORK IN PROGRESS</div>
+  <!-- rest of your webpage content -->
+</body>
+<style>
+  #sticky-banner {
+  background-color: red; /* or any other color you want */
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0; /* position at the top of the page */
+  z-index: 1; /* make sure it appears on top of other elements */
+}
+</style>
+
+<div class="layout--article">
+  {%- include article/top/custom.html -%}
+
+  <div class="article__content" itemprop="articleBody">{{ content }}</div>
+
+  {%- if _sharing -%}
+    <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
+  {%- endif -%}
+
+  <div class="d-print-none">
+    {%- include article-footer.html -%}
+    {%- include article-section-navigator.html -%}
+  </div>
+
+</div>
+
+<script>
+  {%- include scripts/article.js -%}
+</script>
